@@ -23,22 +23,28 @@ public class StudentServiceImpl implements studentService {
 	private ModelMapper mapper;
 
 	@Override
-	public Student enrollStudent(StudentDto std) {
+	public Student enrollStudent(int id,StudentDto std) {
 
-		int id = std.getCourseId();
+		//Integer id = std.getCourseId();
+		
+		Student studentData = mapper.map(std, Student.class);
 
 		Course course = courseRepo.findById(id).get();
+		
+		studentData.setCourse(course);
+		
+		
 
-		Student student = new Student();
+//		Student student = new Student();
+//
+//		student.setEnrollmentId(std.getEnrollmentId());
+//		student.setCourse(course);
+//		student.setStudentId(std.getStudentId());
+		//student.setCourse_data(std.getCourseId());
 
-		student.setEnrollmentId(std.getEnrollmentId());
-		student.setCourse(course);
-		student.setStudentId(std.getStudentId());
-		student.setCourse_data(std.getCourseId());
+		Student student = repo.save(studentData);
 
-		Student studentData = repo.save(student);
-
-		return studentData;
+		return student;
 	}
 
 	@Override
@@ -46,6 +52,13 @@ public class StudentServiceImpl implements studentService {
 		
 		repo.deleteById(enrollmentId);
 		
+	}
+
+	@Override
+	public int saveStudent(Student std) {
+		
+		
+		return repo.save(std).getStudentId();
 	}
 
 }

@@ -37,7 +37,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public int saveCourse(Course course) {
 		
-		return courseRepo.save(course).getCourseId();
+		return courseRepo.save(course).getId();
 	}
 
 }

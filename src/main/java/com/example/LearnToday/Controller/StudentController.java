@@ -24,7 +24,7 @@ public class StudentController {
 	private StudentRepoistory repo;
 	
 	@Autowired
-	private studentService service;
+	private studentService dataService;
 
 	@GetMapping("/api/getallcourses")
 	public List<Course> getAllCourse() {
@@ -33,16 +33,34 @@ public class StudentController {
 
 	}
 	
+//	@PostMapping("/api/{id}/students")
+//	public ResponseEntity<Student> enrollStudentCourse(@PathVariable int id,@RequestBody StudentDto std){
+//		
+//		System.out.println("std"+ std);
+//		
+//		Student student =dataService.enrollStudent(id,std);
+//		
+//		System.out.println("student"+ student);
+//		
+//		return ResponseEntity.ok(student);
+//		
+//		
+//	}
+	
 	@PostMapping("/api/students")
-	public ResponseEntity<Student> enrollStudentCourse(@RequestBody StudentDto std){
+	public ResponseEntity<String> createStudent(@RequestBody Student std){
 		
 		System.out.println("std"+ std);
 		
-		Student student = service.enrollStudent(std);
+		int data =dataService.saveStudent(std);
 		
-		System.out.println("student"+ student);
+		//System.out.println("student"+ student);
 		
-		return ResponseEntity.ok(student);
+		String str = "created" + data;
+		
+		
+		
+		return ResponseEntity.ok(str);
 		
 		
 	}
@@ -52,7 +70,7 @@ public class StudentController {
 		
 		
 
-		service.deleteByEnrollId(enrollmentId);
+		dataService.deleteByEnrollId(enrollmentId);
 		String msg =" id successfully deleted" + enrollmentId;
 		
 		return ResponseEntity.ok(msg);

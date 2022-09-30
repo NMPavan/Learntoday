@@ -19,15 +19,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "course_tab")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "course_tab")
 public class Course {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int courseId;
+	private int id;
 
 	private String courseName;
 
