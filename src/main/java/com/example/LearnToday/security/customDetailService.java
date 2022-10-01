@@ -29,7 +29,7 @@ public class customDetailService implements UserDetailsService {
 		Trainer user = userRepository.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("Username or email is not found" + username));
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-				mapToSimpleGrantedAuthority(user.getRole())
+				mapToSimpleGrantedAuthority(user.getRoles())
 
 		);
 	}
@@ -41,3 +41,6 @@ public class customDetailService implements UserDetailsService {
 	}
 
 }
+
+
+// 

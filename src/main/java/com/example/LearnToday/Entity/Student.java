@@ -35,5 +35,7 @@ public class Student {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "course_id")
 	private Course course;
+	
+	
 
 }

@@ -50,6 +50,8 @@ public class SecurityConfig {
 //		.antMatchers("/posts/**").permitAll()
 //		.antMatchers(HttpMethod.POST,"/api/v1/postData/**").permitAll()
 		.antMatchers("/login/**").permitAll()
+		.antMatchers("/api/admin/**").permitAll()
+		.antMatchers("/student/**").permitAll()
 		//.antMatchers("/v3/api-doc/**").permitAll()
 		//.antMatchers(AUTH_WHITELIST).permitAll()
 		.anyRequest()

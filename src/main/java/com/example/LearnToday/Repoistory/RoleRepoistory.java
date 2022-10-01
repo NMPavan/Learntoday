@@ -8,6 +8,6 @@ import com.example.LearnToday.Entity.Role;
 
 public interface RoleRepoistory extends JpaRepository<Role, Integer> {
 	
-	Optional<Role> findByName(String name);
+	Role findByName(String name);
 
 }

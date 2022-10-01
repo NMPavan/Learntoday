@@ -15,7 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-
+import com.example.LearnToday.utils.RoleAuth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,6 +40,11 @@ public class Trainer {
 	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name="user_id",referencedColumnName = "id"),
 	inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id"))
-	private Set<Role> role;
+	private Set<Role> roles;
+	
+	
+	 public void addRole(Role role) {
+	        this.roles.add(role);
+	}
 
 }
