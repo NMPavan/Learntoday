@@ -22,6 +22,15 @@ import com.example.LearnToday.security.JwtSecurityFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 	
+	private static final String[] AUTH_WHITELIST = {
+	        "/authenticate",
+	        "/swagger-resources/**",
+	        "/swagger-ui/**",
+	        "/v2/api-docs",
+	        "/swagger-ui.html",
+	        "/webjars/**"
+	};
+	
 	@Autowired
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	
@@ -52,6 +61,7 @@ public class SecurityConfig {
 		.antMatchers("/login/**").permitAll()
 		.antMatchers("/api/admin/**").permitAll()
 		.antMatchers("/student/**").permitAll()
+		.antMatchers(AUTH_WHITELIST).permitAll()
 		//.antMatchers("/v3/api-doc/**").permitAll()
 		//.antMatchers(AUTH_WHITELIST).permitAll()
 		.anyRequest()
